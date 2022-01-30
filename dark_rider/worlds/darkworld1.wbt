@@ -1,0 +1,225 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.0030623256981684786 -0.7805175967037936 -0.6251263099542788 3.143687644136316
+  position 0.01360582954535694 3.882674762436211 -0.964698435488891
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 2
+  floorTileSize 2.93 1.63
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "C:/Users/MANOJ KUMAR SHARMA/OneDrive/Desktop/dark_rider/arena_lf.png"
+      ]
+      repeatS FALSE
+      repeatT FALSE
+    }
+    roughness 1
+    roughnessMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_roughness.jpg"
+      ]
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_normal.jpg"
+      ]
+    }
+    occlusionMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_occlusion.jpg"
+      ]
+    }
+  }
+}
+Robot {
+  translation -0.375813 0.0448785 0.603335
+  rotation -6.246506188602522e-06 0.9999999999745919 -3.434720718735316e-06 3.088114170019586
+  children [
+    DEF body Transform {
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.06 0.08
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -69.24945697675624
+        axis 0 0 1
+        anchor 0 -0.02 -0.0451
+      }
+      device [
+        RotationalMotor {
+          name "L_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -2.1410330754845195e-06 -0.019999291796441047 -0.045099999996403906
+        rotation 0.9954999608788968 -0.06700693294728838 0.06700670732928503 4.707875433833202
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 1
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -57.8046124506046
+        axis 0 0 1
+        anchor 0 -0.02 0.0451
+      }
+      device [
+        RotationalMotor {
+          name "R_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -2.9194173236984035e-07 -0.01999776388234118 0.04510000000359626
+        rotation 0.6977185462137149 -0.5065523458772135 0.5065506402677941 4.359975784697918
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 1
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    DistanceSensor {
+      translation 0.04 -0.03 0
+      rotation 0 0 1 -1.5707996938995747
+      name "ir_mid"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.04 -0.03 -0.04
+      rotation 0 0 1 -1.5707996938995747
+      name "ir_left"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.04 -0.03 0.04
+      rotation 0 0 1 -1.5707996938995747
+      name "ir_right"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.09 -0.03 0
+      rotation 0 0 1 -1.5707996938995747
+      name "ir_str"
+      type "infra-red"
+    }
+    Solid {
+      translation 0.03 -0.0375 0
+      children [
+        DEF castwl Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.0075
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject USE castwl
+      physics Physics {
+      }
+    }
+    Solid {
+      translation -0.03 -0.0375 0
+      children [
+        DEF castwl Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.0075
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE castwl
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0.045 0.012 -0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.006 0.006 0.006
+          }
+        }
+      ]
+      name "left_eye"
+    }
+    Solid {
+      translation 0.045 0.012 0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.006 0.006 0.006
+          }
+        }
+      ]
+      name "right_eye"
+    }
+  ]
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "dark_controller"
+}
